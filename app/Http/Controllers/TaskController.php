@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use App\TaskList;
+use Auth;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -45,7 +46,7 @@ class TaskController extends Controller
             'list_id' => 'required:numeric'
         ]);
 
-        Task::create($request->all());
+        Auth::user()->tasks()->create($request->all());
 
         return redirect('home');
     }

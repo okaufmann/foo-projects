@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+use Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,7 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tasks = Task::with('list')->get();
+        $tasks = Auth::user()->tasks()->with('list')->get();
 
         return view('home', compact('tasks'));
     }
