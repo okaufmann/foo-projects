@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index');
 
     Route::group(['prefix' => 'task'], function () {
+        Route::get('/', 'TaskController@index');
         Route::get('create', 'TaskController@create');
         Route::post('/', 'TaskController@store');
         Route::get('{id}', 'TaskController@show');

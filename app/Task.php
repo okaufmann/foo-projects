@@ -10,6 +10,8 @@ class Task extends Model
 
     protected $dates = ['due_date'];
 
+    protected $hidden = ['created_at'];
+
     public function list()
     {
         return $this->belongsTo(TaskList::class);

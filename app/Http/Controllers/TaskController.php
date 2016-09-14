@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\FooService;
 use App\Task;
 use App\TaskList;
 use Auth;
@@ -16,9 +17,9 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(FooService $fooService)
     {
-        //
+        dd($fooService);
     }
 
     /**
