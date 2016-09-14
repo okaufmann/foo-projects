@@ -6,7 +6,8 @@
 
         <div class="panel-body">
             <p>
-                <a href="{{url('task/create')}}">Create a new task</a>
+                <a href="{{url('task/create')}}">Create a new task</a> |
+                <a href="{{url('task-list/create')}}">Create a new task list</a>
             </p>
 
             <table class="table table-striped table-hover">

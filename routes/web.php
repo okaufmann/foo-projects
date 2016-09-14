@@ -15,21 +15,28 @@ Route::get('/', function () {
     return view('welcome', ['foo' => 'bar']);
 });
 
-Route::group(['middleware' => 'auth'], function (){
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index');
 
-    Route::get('task/create', 'TaskController@create');
-    Route::post('task/store', 'TaskController@store');
-    Route::get('task/{task}', 'TaskController@show');
-    Route::get('task/{task}', 'TaskController@edit');
-    Route::put('task', 'TaskController@update');
-    Route::delete('task/create', 'TaskController@destroy');
+    Route::group(['prefix' => 'task'], function () {
+        Route::get('create', 'TaskController@create');
+        Route::post('/', 'TaskController@store');
+        Route::get('{id}', 'TaskController@show');
+        Route::get('{id}/edit', 'TaskController@edit');
+        Route::put('/', 'TaskController@update');
+        Route::delete('/', 'TaskController@destroy');
+    });
 
-
+    Route::group(['prefix' => 'task-list'], function () {
+        Route::get('/', 'TaskListController@index');
+        Route::get('create', 'TaskListController@create');
+        Route::post('/', 'TaskListController@store');
+        Route::get('{id}', 'TaskListController@show');
+        Route::get('{id}', 'TaskListController@edit');
+        Route::put('/', 'TaskListController@update');
+        Route::delete('/', 'TaskListController@destroy');
+    });
 });
-
-
-
 
 
 Auth::routes();
